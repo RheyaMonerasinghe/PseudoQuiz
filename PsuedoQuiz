@@ -1,0 +1,40 @@
+import time
+import random
+import datetime
+
+score = 0
+Highest=0
+f = open("myText.txt","r")
+for line in f:
+  if int(line)>Highest:
+    Highest=int(line)
+f.close()
+print("Highest score:",Highest)
+
+now=time.time()
+end=now+11
+Pseudo=["REPEAT", "IF", "WHILE", "=", "<>","ELSE","OUTPUT","INPUT","CASE OF","REAL"]
+Python=["for", "if", "while", "==", "!=","else","print","input","What would you use instead of elif?","float"]
+
+while time.time()<=end:
+  ques=(random.choice(Python))
+  index=Python.index(ques)
+  ans=Pseudo[index]
+  print(ques)
+  inp=input("Input the command in pseudocode:")
+  del Python[index]
+  del Pseudo[index]
+  if inp==ans:
+    print("Correct")
+    print("")
+    score+=1
+  else:
+    print("incorrect")
+    print("")
+print("time's up!!") 
+line=(score)
+print("Score is:",score)
+
+f= open("myText.txt","a")
+f.write("{}\n".format(score))
+f.close()   
